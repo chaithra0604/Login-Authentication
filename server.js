@@ -3,6 +3,7 @@ const express = require ('express');
 const mongoose = require('mongoose');
 const app = express();
 const authRoutes = require ('./routes/Auth');
+const proctedRoute = require('./routes/protectedRoute');
 
 mongoose.connect("mongodb://localhost:27017/jwt",{ 
     useNewUrlParser : true,
@@ -18,6 +19,7 @@ mongoose.connect("mongodb://localhost:27017/jwt",{
 
 app.use(express.json());
 app.use('/Auth',authRoutes);
+app.use('/protected',proctedRoute);
 
 app.listen('3000',() => {
     console.log("Server is running");
